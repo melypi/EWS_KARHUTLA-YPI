@@ -118,6 +118,6 @@ karhutla/
 
 ## 📬 Kontak & Pengembang
 
-- **Pengembang:** MEL Yayasan Planet Indonesia (`arif@planetindonesia.org`)
-- **Web Portal:** [https://www.planetindonesia.org](https://www.planetindonesia.org)
-- **Lokasi Fokus:** Seluruh Desa Dampingan YPI, Provinsi Kalimantan Barat, Indonesia.
+- Pengembang: MEL Yayasan Planet Indonesia (arif@planetindonesia.org)
+- Web Portal: https://www.planetindonesia.org
+- Lokasi Fokus: Seluruh Desa Dampingan YPI, Provinsi Kalimantan Barat, Indonesia.
