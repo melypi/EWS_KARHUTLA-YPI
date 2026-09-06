@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EWS Karhutla YPI</title>
+    
+    <!-- CSS Bootstrap 5 & FontAwesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --lead-teal: #004B5C;
+            --dark-teal-bg: #00222B;
+            --card-teal-bg: #00333E;
+            --border-teal: #005B6F;
+            
+            --accent-burgundy: #730A2D;  /* Prioritas 1 */
+            --accent-orange: #F06437;    /* Prioritas 2 */
+            --accent-yellow: #FFB432;    /* Prioritas 3 */
+            --accent-teal-light: #20B2AA;/* Prioritas 4 */
+
+            --text-offwhite: #F7F0EC;
+            --text-muted-teal: #A0C0C8;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--dark-teal-bg);
+            color: var(--text-offwhite);
+        }
+
+        .app-layout {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .app-header {
+            background: var(--lead-teal);
+            height: 60px;
+            padding: 0 20px;
+            border-bottom: 1px solid var(--border-teal);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .brand-badge {
+            background: rgba(115, 10, 45, 0.699);
+            color: #eae4e6;
+            border: 1px solid var(--accent-burgundy);
+            font-size: 0.55rem;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .brand-badge i {
+            font-size: 0.35rem !important;
+            margin-right: 3px !important;
+        }
+
+        .app-workspace {
+            display: flex;
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-sidebar {
+            width: 340px;
+            background: var(--card-teal-bg);
+            border-right: 1px solid var(--border-teal);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            z-index: 900;
+        }
+
+        .app-sidebar.collapsed {
+            margin-left: -340px;
+        }
+
+        .sidebar-header {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-teal);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted-teal);
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .sidebar-content {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .stat-card {
+            background: var(--dark-teal-bg);
+            border: 1px solid var(--border-teal);
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .stat-card .val {
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .stat-card.p1 { border-left: 5px solid var(--accent-burgundy); }
+        .stat-card.p1 .val { color: #FF6B8B; }
+
+        .stat-card.p2 { border-left: 5px solid var(--accent-orange); }
+        .stat-card.p2 .val { color: var(--accent-orange); }
+
+        .stat-card.p3 { border-left: 5px solid var(--accent-yellow); }
+        .stat-card.p3 .val { color: var(--accent-yellow); }
+
+        .stat-card.p4 { border-left: 5px solid var(--accent-teal-light); }
+        .stat-card.p4 .val { color: var(--accent-teal-light); }
+
+        .action-text {
+            font-size: 0.68rem;
+            line-height: 1.3;
+            margin-top: 6px;
+        }
+
+        .card-title-text {
+            color: var(--text-offwhite);
+            font-size: 0.82rem;
+        }
+
+        .card-subtitle-text {
+            color: var(--text-muted-teal);
+            font-size: 0.65rem;
+        }
+
+        .info-box {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-teal);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .map-viewport {
+            flex: 1;
+            position: relative;
+            background: #000;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .sidebar-toggle {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 800;
+            background: var(--lead-teal);
+            border: 1px solid var(--border-teal);
+            color: var(--text-offwhite);
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        .sidebar-toggle:hover {
+            background: var(--border-teal);
+        }
+
+        .btn-custom-accent {
+            background: var(--accent-burgundy);
+            color: #fff;
+            border: none;
+        }
+        .btn-custom-accent:hover {
+            background: #730A2D;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .app-sidebar {
+                position: absolute;
+                height: 100%;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+            }
+            .app-sidebar.collapsed {
+                margin-left: -340px;
+            }
+        }
+
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 34, 43, 0.95); 
+            backdrop-filter: blur(5px);
+            z-index: 99999; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .welcome-modal-content {
+            background: var(--card-teal-bg);
+            border: 1px solid var(--border-teal);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 850px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            overflow: hidden;
+        }
+
+        .welcome-header {
+            background: var(--lead-teal);
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-teal);
+        }
+
+        .welcome-body {
+            padding: 20px;
+            overflow-y: auto;
+            color: var(--text-offwhite);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .welcome-body h3 {
+            font-size: 1rem;
+            color: var(--accent-yellow);
+            margin-top: 15px;
+            margin-bottom: 8px;
+            border-bottom: 1px dashed var(--border-teal);
+            padding-bottom: 5px;
+        }
+        
+        .welcome-body ul { padding-left: 20px; margin-bottom: 10px; }
+        
+        .welcome-body table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.8rem; }
+        .welcome-body th, .welcome-body td { border: 1px solid var(--border-teal); padding: 8px; vertical-align: top; }
+        .welcome-body th { background: rgba(0,0,0,0.2); color: var(--text-muted-teal); text-align: left; }
+
+        .welcome-footer {
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid var(--border-teal);
+        }
+
+        #btnUnderstand:disabled {
+            background: #333;
+            color: #777;
+            cursor: not-allowed;
+            border: 1px solid #444;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- POP-UP INFORMASI (WELCOME MODAL) -->
+    <div id="welcomeModal" class="welcome-overlay">
+        <div class="welcome-modal-content">
+            <div class="welcome-header">
+                <h2 class="h5 mb-0 fw-bold text-white"><i class="fa-solid fa-circle-info me-2"></i>Informasi Sistem EWS Karhutla YPI</h2>
+            </div>
+            
+            <div class="welcome-body">
+                <h3>1. Tentang Sistem</h3>
+                <p><b>EWS KARHUTLA - YAYASAN PLANET INDONESIA</b> adalah sistem informasi geospasial analitik untuk mendeteksi dan menentukan tingkat prioritas penanganan potensi kebakaran hutan dan lahan. Data utama yang digunakan bersumber dari pantauan satelit <b>SiPongi (Kementerian Kehutanan)</b>.</p>
+                
+                <p><b>Penting untuk dipahami: Hotspot (Titik Panas) TIDAK SAMA dengan Titik Api.</b><br> 
+                Hotspot hanyalah indikasi anomali suhu panas di permukaan bumi yang terekam oleh satelit dalam suatu luasan area tertentu. Panas ini bisa berasal dari kebakaran, namun bisa juga dari sumber lain (seperti pantulan panas atap industri atau tanah kosong). Untuk membedakannya, data SiPongi dilengkapi dengan tingkat kepercayaan (<i>Confidence Level</i>):</p>
+                <ul>
+                    <li><b>High (Tinggi) & Medium (Sedang):</b> Indikasi kuat bahwa hotspot tersebut adalah benar <b>Titik Api</b> (kebakaran nyata) yang membutuhkan respons cepat.</li>
+                    <li><b>Low (Rendah):</b> Kemungkinan besar <i>false alarm</i> (bukan kebakaran) atau sumber panas yang sangat kecil, sehingga cukup dipantau.</li>
+                </ul>
+
+                <p>Data hotspot tersebut kemudian dianalisis secara spasial berdasarkan kriteria kerawanan ekosistem untuk ditangani langsung oleh Satgas YPI. Sistem ini <b>diperbarui secara berkala setiap 3 jam sekali</b> (mulai pukul 01:00 WIB dan seterusnya).</p>
+                
+                <p>Tujuan utama pemetaan ini adalah mendukung <b>Prioritas Operasional Satgas dalam Upaya Mitigasi dan Penanganan Karhutla</b> di seluruh Desa Dampingan YPI Kalimantan Barat. Melalui sistem ini, Satgas Desa dapat mengambil keputusan penanganan yang cepat, tepat sasaran dan efisien di tengah keterbatasan tenaga serta peralatan.<br>
+                <b>Pengguna:</b> Segala unsur yang saat ini sedang berupaya dalam mitigasi dan penanganan Karhutla di lapangan.</p>
+
+                <h3>2. Sumber Data Terintegrasi</h3>
+                <ul>
+                    <li><b>Hotspot:</b> SiPongi Kementerian Lingkungan Hidup dan Kehutanan (KLHK).</li>
+                    <li><b>Batas Desa:</b> Batas Wilayah Administrasi Desa (TASWIL) 2023 oleh Badan Informasi Geospasial (BIG).</li>
+                    <li><b>Peta Gambut & Tutupan Lahan:</b> Kementerian LHK (2024) & Citra Satelit ESA WorldCover (2021).</li>
+                    <li><b>Kawasan Hutan & Konservasi:</b> Berdasarkan Keputusan Menteri Kehutanan No. SK.733/Menhut-II/2014 (Kalimantan Barat).</li>
+                </ul>
+
+                <h3>3. Analisis Prioritas & Rekomendasi</h3>
+                <table>
+                    <tr>
+                        <th>Prioritas</th>
+                        <th>Tingkat Keyakinan (Confidence)</th>
+                        <th>Lokasi Titik Api</th>
+                        <th>Ekosistem / Kawasan Lahan</th>
+                        <th>Rekomendasi Tindakan</th>
+                    </tr>
+                    <tr>
+                        <td><b style="color: #FF8BA7;">Prioritas 1 (Tinggi)</b></td>
+                        <td>High / Medium</td>
+                        <td><b>Di Dalam</b> Desa</td>
+                        <td>Gambut / Hutan / Konservasi</td>
+                        <td><b>Segera Padamkan.</b> Lahan memiliki risiko tinggi penyebaran masif.</td>
+                    </tr>
+                    <tr>
+                        <td><b style="color: var(--accent-orange);">Prioritas 2 (Sedang)</b></td>
+                        <td>High / Medium</td>
+                        <td><b>Di Dalam</b> Desa</td>
+                        <td>Area Penggunaan Lain (APL) / Mineral</td>
+                        <td>Tangani segera agar api tidak meluas ke ekosistem kritis atau pemukiman.</td>
+                    </tr>
+                    <tr>
+                        <td><b style="color: var(--accent-yellow);">Prioritas 3 (Rendah)</b></td>
+                        <td>High / Medium</td>
+                        <td><b>Di Luar</b> Desa (Radius &lt; 1000m)</td>
+                        <td>Semua jenis kawasan</td>
+                        <td>Siagakan tim dan alat, karena api berada tepat di perbatasan desa dampingan.</td>
+                    </tr>
+                    <tr>
+                        <td><b style="color: var(--accent-teal-light);">Prioritas 4 (Waspada)</b></td>
+                        <td>Low (Rendah)</td>
+                        <td>Dalam Desa / Radius 1000m</td>
+                        <td>Semua jenis kawasan</td>
+                        <td>Pantau via satelit/radio. Ada kemungkinan <i>false alarm</i> atau titik api sangat kecil.</td>
+                    </tr>
+                    <tr>
+                        <td><b style="color: #A0C0C8;">Luar Pemantauan</b></td>
+                        <td>Semua Level</td>
+                        <td>Jarak <b>&gt; 1000m</b> dari Desa</td>
+                        <td>Semua jenis kawasan</td>
+                        <td>Diabaikan dalam target operasi utama Satgas Desa YPI.</td>
+                    </tr>
+                </table>
+
+                <h3>4. Fitur Utama</h3>
+                <ul>
+                    <li><b>Live Monitoring:</b> Data yang ditampilkan selalu diperbarui secara berkala.</li>
+                    <li><b>CSV Data:</b> Untuk mengetahui data secara lengkap dapat mengunduh data tabular berformat .csv.</li>
+                    <li><b>Cetak Peta (PDF A4):</b> Cetak Layout Peta Sederhana dilengkapi judul, legenda, dan keterangan waktu cetak.</li>
+                    <li><b>Alat Ukur Spasial:</b> Menghitung jarak dari lokasi 1 ke lokasi lain serta mengestimasi luasan langsung di atas peta.</li>
+                    <li><b>Lokasi (GPS):</b> Menemukan koordinat pengguna di lapangan secara langsung.</li>
+                </ul>
+            </div>
+            
+            <div class="welcome-footer">
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="readCheckbox">
+                    <label class="form-check-label text-white" style="font-size: 0.85rem;" for="readCheckbox">
+                        Saya sudah membaca dan memahami petunjuk operasional sistem ini.
+                    </label>
+                </div>
+                <button id="btnUnderstand" class="btn btn-custom-accent w-100 fw-bold py-2" disabled>Oke, Saya Paham</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-layout">
+        <!-- HEADER UTAMA -->
+        <header class="app-header d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <i class="fa-solid fa-fire-flame-curved fs-4" style="color: var(--accent-orange);"></i>
+                <div>
+                    <div class="d-flex align-items-center gap-2">
+                        <h1 class="h6 mb-0 fw-bold" style="color: var(--text-offwhite);">EWS KARHUTLA - YAYASAN PLANET INDONESIA</h1>
+                        <span class="brand-badge"><i class="fa-solid fa-circle me-1" style="color: #ff0055;"></i> LIVE MONITORING</span>
+                    </div>
+                    <small style="color: var(--text-muted-teal); font-size: 0.7rem;">Prioritas Operasional Satgas dalam Upaya Mitigasi dan Penanganan Karhutla di Seluruh Desa Dampingan YPI Kalimantan Barat</small>
+                </div>
+            </div>
+
+            <!-- KONTROL APLIKASI (MEMBUKA FOLDER DATA CSV) -->
+            <div class="d-flex align-items-center gap-2">
+                <a href="http://localhost/karhutla/data/" target="_blank" class="btn btn-sm btn-custom-accent fw-semibold">
+                    <i class="fa-solid fa-folder-open me-1"></i> <span class="d-none d-sm-inline">CSV Data</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- AREA WORKSPACE -->
+        <div class="app-workspace">
+            
+            <!-- PANEL SIDEBAR -->
+            <aside class="app-sidebar" id="sidebarPanel">
+                <div class="sidebar-header d-flex justify-content-between align-items-center">
+                    <span><i class="fa-solid fa-chart-pie me-2"></i> Ringkasan Prioritas</span>
+                    <button class="btn btn-sm p-0" style="color: var(--text-muted-teal);" onclick="toggleSidebar()"><i class="fa-solid fa-xmark fs-5"></i></button>
+                </div>
+                
+                <div class="sidebar-content">
+                    <p class="small mb-2" style="color: var(--text-muted-teal); font-size: 0.78rem;">Prioritas ini dirancang untuk memastikan Satgas Desa dapat bertindak cepat, tepat, dan efisien di tengah keterbatasan tenaga serta peralatan pemadaman.</p>
+
+                    <!-- WAKTU UPDATE SIPONGI / SCRAPING -->
+                    <div class="mb-3 p-2 rounded" style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-teal); font-size: 0.72rem; color: var(--text-muted-teal);">
+                        <i class="fa-regular fa-clock me-1" style="color: var(--accent-yellow);"></i> 
+                        Update Terakhir: <strong id="lastUpdateText" style="color: var(--text-offwhite);">Memuat...</strong>
+                    </div>
+
+                    <!-- STAT CARDS -->
+                    <div class="stat-card p1">
+                        <div>
+                            <div class="fw-bold card-title-text">Prioritas 1 (Tinggi)</div>
+                            <small class="card-subtitle-text d-block mt-1">[High/Med] + [Dalam Desa] + [Gambut/Hutan/Konservasi]</small>
+                            <div class="action-text fw-semibold" style="color: #FF8BA7;">
+                                <strong>Tindakan:</strong> Segera Padamkan.
+                            </div>
+                        </div>
+                        <div class="val" id="cntP1">-</div>
+                    </div>
+
+                    <div class="stat-card p2">
+                        <div>
+                            <div class="fw-bold card-title-text">Prioritas 2 (Sedang)</div>
+                            <small class="card-subtitle-text d-block mt-1">[High/Med] + [Dalam Desa] + [Luar Gambut/Hutan/Konservasi (APL/Mineral)]</small>
+                            <div class="action-text fw-semibold" style="color: var(--accent-orange);">
+                                <strong>Tindakan:</strong> Tangani segera agar api tidak meluas ke ekosistem kritis/pemukiman.
+                            </div>
+                        </div>
+                        <div class="val" id="cntP2">-</div>
+                    </div>
+
+                    <div class="stat-card p3">
+                        <div>
+                            <div class="fw-bold card-title-text">Prioritas 3 (Rendah)</div>
+                            <small class="card-subtitle-text d-block mt-1">[High/Med] + [Luar Desa (Ring Buffer &lt; 1000m)] + [Semua Kawasan]</small>
+                            <div class="action-text fw-semibold" style="color: var(--accent-yellow);">
+                                <strong>Tindakan:</strong> Siagakan tim dan alat. Api berada di luar Desa Dampingan YPI.
+                            </div>
+                        </div>
+                        <div class="val" id="cntP3">-</div>
+                    </div>
+
+                    <div class="stat-card p4">
+                        <div>
+                            <div class="fw-bold card-title-text">Prioritas 4 (Waspada)</div>
+                            <small class="card-subtitle-text d-block mt-1">[Low Conf] + [Dalam/Luar Desa (Ring Buffer &lt; 1000m)] + [Semua Kawasan]</small>
+                            <div class="action-text fw-semibold" style="color: var(--accent-teal-light);">
+                                <strong>Tindakan:</strong> Pantau via Satelit/Radio. Indikasi false alarm atau api sangat kecil.
+                            </div>
+                        </div>
+                        <div class="val" id="cntP4">-</div>
+                    </div>
+
+                    <!-- PETUNJUK OPERASIONAL -->
+                    <div class="mt-4 info-box">
+                        <h6 class="fw-bold fs-7 mb-2" style="color: var(--text-offwhite);"><i class="fa-solid fa-circle-info me-1" style="color: var(--accent-yellow);"></i> Petunjuk Operasional</h6>
+                        <ul class="ps-3 mb-0" style="color: var(--text-muted-teal); font-size: 0.73rem;">
+                            <li class="mb-1">Klik titik hotspot untuk melihat koordinat presisi.</li>
+                            <li>Gunakan alat pengukur jarak di kanan atas peta untuk menghitung jangkauan pemadaman.</li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- KONTROL BUKA SIDEBAR -->
+            <button class="sidebar-toggle" onclick="toggleSidebar()" title="Buka/Tutup Panel Statistik">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- VIEWPORT PETA (IFRAME) -->
+            <main class="map-viewport">
+                <iframe id="mapFrame" src="peta.html"></iframe>
+            </main>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT KONTROL -->
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebarPanel').classList.toggle('collapsed');
+        }
+
+        function loadStatistics() {
+            fetch('./stats.json?t=' + new Date().getTime())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('HTTP error! Status: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('cntP1').innerText = data.p1 !== undefined ? data.p1 : '0';
+                    document.getElementById('cntP2').innerText = data.p2 !== undefined ? data.p2 : '0';
+                    document.getElementById('cntP3').innerText = data.p3 !== undefined ? data.p3 : '0';
+                    document.getElementById('cntP4').innerText = data.p4 !== undefined ? data.p4 : '0';
+                    
+                    if (document.getElementById('lastUpdateText')) {
+                        document.getElementById('lastUpdateText').innerText = data.last_update || '-';
+                    }
+                })
+                .catch(error => {
+                    console.error('Data statistik gagal dimuat:', error);
+                    if (document.getElementById('lastUpdateText')) {
+                        document.getElementById('lastUpdateText').innerText = 'Gunakan localhost (http://localhost/karhutla/)';
+                    }
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStatistics();
+
+            const checkbox = document.getElementById('readCheckbox');
+            const btn = document.getElementById('btnUnderstand');
+            const modal = document.getElementById('welcomeModal');
+
+            checkbox.addEventListener('change', function() {
+                btn.disabled = !this.checked;
+            });
+
+            btn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
