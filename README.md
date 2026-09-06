@@ -1,11 +1,11 @@
-# 🧯 EWS KARHUTLA - YAYASAN PLANET INDONESIA (YPI)
+# EWS KARHUTLA - YAYASAN PLANET INDONESIA (YPI)
 > **Early Warning System & Sistem Analisis Prioritas Operasional Penanganan Kebakaran Hutan dan Lahan di Desa Dampingan YPI Kalimantan Barat.**
 
 Sistem Informasi Geospasial Analitik ini dirancang untuk mendukung **Tim Satgas Desa Dampingan Yayasan Planet Indonesia (YPI)** dalam mengambil keputusan penanganan Karhutla secara cepat, tepat sasaran, dan efisien di tengah keterbatasan tenaga serta peralatan pemadaman di lapangan.
 
 ---
 
-## 📋 Daftar Isi
+## Daftar Isi
 1. [Tentang Sistem](#-tentang-sistem)
 2. [Fitur Utama](#-fitur-utama)
 3. [Alur Analisis & Matriks Prioritas](#-alur-analisis--matriks-prioritas)
@@ -17,27 +17,27 @@ Sistem Informasi Geospasial Analitik ini dirancang untuk mendukung **Tim Satgas 
 
 ---
 
-## 🎯 Tentang Sistem
+## Tentang Sistem
 
 Sistem EWS Karhutla secara otomatis menarik data pantauan satelit **SiPongi (Kementerian LHK)** setiap 3 jam sekali, lalu menganalisis posisi titik panas (*hotspot*) secara spasial terhadap batas administrasi desa dampingan, area penyangga (*ring buffer* 1.000m), dan kawasan ekosistem kritis (gambut, hutan, dan konservasi).
 
-> ⚠️ **Catatan Penting:**  
+> **Catatan Penting:**  
 > **Hotspot (Titik Panas) TIDAK SAMA dengan Titik Api.** Hotspot adalah indikasi anomali suhu permukaan bumi yang terekam satelit. Oleh karena itu, data dilengkapi dengan *Confidence Level* (Tingkat Kepercayaan) untuk menyaring potensi *false alarm*.
 
 ---
 
-## ✨ Fitur Utama
+## Fitur Utama
 
-- 🔄 **Live Monitoring Otomatis:** Data diperbarui setiap 3 jam sekali secara otomatis via GitHub Actions tanpa perlu server berbayar.
-- 🎯 **Matriks Prioritas Operasional:** Otomatisasi pengelompokan hotspot dari Prioritas 1 (Tinggi) hingga Prioritas 4 (Waspada).
-- 🖨️ **Modul Cetak Peta A4:** Fitur cetak layout peta standar kartografi otomatis lengkap dengan judul, skala, legenda, dan koordinat.
-- 📏 **Alat Ukur Spasial (Measure Tool):** Mengukur jarak dari pemukiman ke titik api dan mengestimasi luas area terbakar secara presisi.
-- 📍 **GPS Tracking (Deteksi Lokasi):** Membantu tim Satgas mengetahui posisi koordinat mereka di lapangan secara langsung dari HP.
-- 📊 **Download Data Tabular (.CSV):** Rekapitulasi data hotspot historis dan harian yang siap diunduh untuk analisis lanjutan.
+- **Live Monitoring Otomatis:** Data diperbarui setiap 3 jam sekali secara otomatis via GitHub Actions tanpa perlu server berbayar.
+- **Matriks Prioritas Operasional:** Otomatisasi pengelompokan hotspot dari Prioritas 1 (Tinggi) hingga Prioritas 4 (Waspada).
+- **Modul Cetak Peta A4:** Fitur cetak layout peta standar kartografi otomatis lengkap dengan judul, skala, legenda, dan koordinat.
+- **Alat Ukur Spasial (Measure Tool):** Mengukur jarak dari pemukiman ke titik api dan mengestimasi luas area terbakar secara presisi.
+- **GPS Tracking (Deteksi Lokasi):** Membantu tim Satgas mengetahui posisi koordinat mereka di lapangan secara langsung dari HP.
+- **Download Data Tabular (.CSV):** Rekapitulasi data hotspot historis dan harian yang siap diunduh untuk analisis lanjutan.
 
 ---
 
-## 📐 Alur Analisis & Matriks Prioritas
+## Alur Analisis & Matriks Prioritas
 
 Analisis tumpang susun (*spatial overlay*) dijalankan menggunakan algoritma Python (`GeoPandas`) dengan matriks keputusan sebagai berikut:
 
@@ -51,7 +51,7 @@ Analisis tumpang susun (*spatial overlay*) dijalankan menggunakan algoritma Pyth
 
 ---
 
-## 📚 Sumber Data Terintegrasi
+## Sumber Data Terintegrasi
 
 | Jenis Data | Sumber Data | Keterangan / Lisensi |
 | :--- | :--- | :--- |
@@ -62,7 +62,7 @@ Analisis tumpang susun (*spatial overlay*) dijalankan menggunakan algoritma Pyth
 
 ---
 
-## ⚙️ Arsitektur & Otomasi Sistem
+## Arsitektur & Otomasi Sistem
 
 Sistem ini berjalan 100% secara **serverless** dan gratis memanfaatkan alur kerja **GitHub Actions** dan **GitHub Pages**:
 
@@ -77,12 +77,12 @@ graph LR
     E -->|4. Update UI Dashboard| G
 ```
 
-### ⏰ Jadwal Eksekusi Otomatis (WIB):
+### Jadwal Eksekusi Otomatis (WIB):
 Otomasi berjalan rutin pada jam: **01:00**, **04:00**, **07:00**, **10:00**, **13:00**, **16:00**, **19:00**, dan **22:00 WIB**.
 
 ---
 
-## 🚀 Panduan Penggunaan WebGIS
+## Panduan Penggunaan WebGIS
 
 1. **Akses Dashboard:** Buka link WebGIS publik pada browser HP atau laptop.
 2. **Pahami Informasi Awal:** Tinjau Pop-up petunjuk operasional, centang persetujuan, lalu klik **"Oke, Saya Paham"**.
@@ -94,7 +94,7 @@ Otomasi berjalan rutin pada jam: **01:00**, **04:00**, **07:00**, **10:00**, **1
 
 ---
 
-## 📁 Struktur Repositori
+## Struktur Repositori
 
 ```text
 karhutla/
@@ -116,7 +116,7 @@ karhutla/
 
 ---
 
-## 📬 Kontak & Pengembang
+## Kontak & Pengembang
 
 - Pengembang: MEL Yayasan Planet Indonesia (arif@planetindonesia.org)
 - Web Portal: https://www.planetindonesia.org
