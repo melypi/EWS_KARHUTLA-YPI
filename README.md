@@ -1,9 +1,6 @@
 # 🧯 EWS KARHUTLA - YAYASAN PLANET INDONESIA (YPI)
 > **Early Warning System & Sistem Analisis Prioritas Operasional Penanganan Kebakaran Hutan dan Lahan di Desa Dampingan YPI Kalimantan Barat.**
 
-[![Live WebGIS](https://img.shields.io/badge/WebGIS-Live%20Demo-004B5C?style=for-the-badge&logo=leaflet)](https://username-anda.github.io/karhutla/)
-[![Auto Scraping](https://img.shields.io/badge/GitHub%20Actions-Every%203%20Hours-20B2AA?style=for-the-badge&logo=github-actions)](https://github.com/username-anda/karhutla/actions)
-
 Sistem Informasi Geospasial Analitik ini dirancang untuk mendukung **Tim Satgas Desa Dampingan Yayasan Planet Indonesia (YPI)** dalam mengambil keputusan penanganan Karhutla secara cepat, tepat sasaran, dan efisien di tengah keterbatasan tenaga serta peralatan pemadaman di lapangan.
 
 ---
@@ -78,23 +75,28 @@ graph LR
     B -->|3. Generate Output| F[CSV Data /data/]
     D -->|4. Display| G[WebGIS GitHub Pages]
     E -->|4. Update UI Dashboard| G
+```
 
+### ⏰ Jadwal Eksekusi Otomatis (WIB):
+Otomasi berjalan rutin pada jam: **01:00**, **04:00**, **07:00**, **10:00**, **13:00**, **16:00**, **19:00**, dan **22:00 WIB**.
 
+---
 
-⏰ Jadwal Eksekusi Otomatis (WIB):
-Otomasi berjalan rutin pada jam: 01:00, 04:00, 07:00, 10:00, 13:00, 16:00, 19:00, dan 22:00 WIB.
+## 🚀 Panduan Penggunaan WebGIS
 
-🚀 Panduan Penggunaan WebGIS
-1. Akses Dashboard: Buka link WebGIS publik pada browser HP atau laptop.
-2. Pahami Informasi Awal: Tinjau Pop-up petunjuk operasional, centang persetujuan, lalu klik "Oke, Saya Paham".
-3. Pantau Statistik Sidebar: Lihat rekapitulasi jumlah titik api per tingkat prioritas dan stempel waktu Update Terakhir.
-4. Interaksi Peta:
-Klik Titik Hotspot: Untuk menampilkan popup detail koordinat (X,Y), desa, sumber satelit, serta status kawasan.
-Gunakan Tool Ukur (Kanan Atas): Untuk menghitung jarak tim ke lokasi atau menghitung luas area terbakar.
-Tombol Cetak PDF A4: Pilih fokus desa pada dropdown di kiri atas, lalu klik Cetak PDF (A4) untuk mencetak peta lapangan.
+1. **Akses Dashboard:** Buka link WebGIS publik pada browser HP atau laptop.
+2. **Pahami Informasi Awal:** Tinjau Pop-up petunjuk operasional, centang persetujuan, lalu klik **"Oke, Saya Paham"**.
+3. **Pantau Statistik Sidebar:** Lihat rekapitulasi jumlah titik api per tingkat prioritas dan stempel waktu *Update Terakhir*.
+4. **Interaksi Peta:**
+   - **Klik Titik Hotspot:** Untuk menampilkan *popup* detail koordinat (X,Y), desa, sumber satelit, serta status kawasan.
+   - **Gunakan Tool Ukur (Kanan Atas):** Untuk menghitung jarak tim ke lokasi atau menghitung luas area terbakar.
+   - **Tombol Cetak PDF A4:** Pilih fokus desa pada dropdown di kiri atas, lalu klik **Cetak PDF (A4)** untuk mencetak peta lapangan.
 
+---
 
-📁 Struktur Repositori
+## 📁 Struktur Repositori
+
+```text
 karhutla/
 ├── .github/
 │   └── workflows/
@@ -110,11 +112,12 @@ karhutla/
 ├── peta.html                  # Peta Interaktif Folium (Embedded via Iframe)
 ├── stats.json                 # Metadata Ringkasan Statistik Realtime
 └── README.md                  # Dokumentasi Sistem
+```
 
+---
 
+## 📬 Kontak & Pengembang
 
-
-Kontak & Pengembang
-Pengembang: MEL Yayasan Planet Indonesia (arif@planetindonesia.org)
-Web Portal: https://www.planetindonesia.org
-Lokasi Fokus: Seluruh Desa Dampingan YPI, Provinsi Kalimantan Barat, Indonesia.
+- **Pengembang:** MEL Yayasan Planet Indonesia (`arif@planetindonesia.org`)
+- **Web Portal:** [https://www.planetindonesia.org](https://www.planetindonesia.org)
+- **Lokasi Fokus:** Seluruh Desa Dampingan YPI, Provinsi Kalimantan Barat, Indonesia.
