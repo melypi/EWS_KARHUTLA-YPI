@@ -1,4 +1,4 @@
-# EWS KARHUTLA - YAYASAN PLANET INDONESIA (YPI)
+# EWS KARHUTLA - YAYASAN PLANET INDONESIA (YPI) https://melypi.github.io/EWS_KARHUTLA-YPI/
 > **Early Warning System & Sistem Analisis Prioritas Operasional Penanganan Kebakaran Hutan dan Lahan di Desa Dampingan YPI Kalimantan Barat.**
 
 Sistem Informasi Geospasial Analitik ini dirancang untuk mendukung **Tim Satgas Desa Dampingan Yayasan Planet Indonesia (YPI)** dalam mengambil keputusan penanganan Karhutla secara cepat, tepat sasaran, dan efisien di tengah keterbatasan tenaga serta peralatan pemadaman di lapangan.
