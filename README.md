@@ -72,3 +72,51 @@ Sistem ini berjalan 100% secara serverless memanfaatkan alur kerja GitHub Action
                                             ^                    | - stats.json           |
 +----------------------+                    |                    | - CSV Data (/data/)    |
 | Shapefile Desa & KK  | -------------------+                    +------------------------+
++----------------------+                                                     |
+                                                                             v
+                                                                 +------------------------+
+                                                                 | WebGIS (GitHub Pages)  |
+                                                                 +------------------------+
+
+### ⏰ Jadwal Eksekusi Otomatis (WIB):
+Otomasi berjalan rutin setiap 3 jam sekali pada jam: 01:00, 04:00, 07:00, 10:00, 13:00, 16:00, 19:00, dan 22:00 WIB.
+
+---
+
+## 🚀 Panduan Penggunaan WebGIS
+
+1. Akses Dashboard: Buka link WebGIS publik pada browser HP atau laptop.
+2. Pahami Informasi Awal: Tinjau Pop-up petunjuk operasional, centang persetujuan, lalu klik "Oke, Saya Paham".
+3. Pantau Statistik Sidebar: Lihat rekapitulasi jumlah titik api per tingkat prioritas dan stempel waktu Update Terakhir.
+4. Interaksi Peta:
+   - Klik Titik Hotspot: Untuk menampilkan popup detail koordinat (X,Y), desa, sumber satelit, serta status kawasan.
+   - Gunakan Tool Ukur (Kanan Atas): Untuk menghitung jarak tim ke lokasi atau menghitung luas area terbakar.
+   - Tombol Cetak PDF A4: Pilih fokus desa pada dropdown di kiri atas, lalu klik Cetak PDF (A4) untuk mencetak peta lapangan.
+
+---
+
+## 📁 Struktur Repositori
+
+karhutla/
+├── .github/
+│   └── workflows/
+│       └── run_scraper.yml    # Script Otomasi GitHub Actions (3 Jam Sekali)
+├── assets/
+│   └── main.py                # Pipeline Utama (Scraping, Spatial Analysis, HTML Generator)
+├── data/
+│   ├── desa_intervensi.shp    # Boundary SHP Desa Dampingan YPI
+│   ├── gambut_hutan_kk_kalbar.shp # Spatial Layer Kawasan Ekosistem
+│   ├── data_hotspot_terbaru.csv # Dataset Hotspot Terbaru
+│   └── YYYYMMDD_HHMM_analisis_prioritas_hotspot.csv # Arsip Historis Hotspot
+├── index.html                 # Dashboard Utama WebGIS (UI & Sidebar)
+├── peta.html                  # Peta Interaktif Folium (Embedded via Iframe)
+├── stats.json                 # Metadata Ringkasan Statistik Realtime
+└── README.md                  # Dokumentasi Sistem
+
+---
+
+## 📬 Kontak & Pengembang
+
+- Pengembang: MEL Yayasan Planet Indonesia (arif@planetindonesia.org)
+- Web Portal: https://www.planetindonesia.org
+- Lokasi Fokus: Seluruh Desa Dampingan YPI, Provinsi Kalimantan Barat, Indonesia.
