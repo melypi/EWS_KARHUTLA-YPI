@@ -78,3 +78,23 @@ graph LR
     B -->|3. Generate Output| F[CSV Data /data/]
     D -->|4. Display| G[WebGIS GitHub Pages]
     E -->|4. Update UI Dashboard| G
+
+
+
+⏰ Jadwal Eksekusi Otomatis (WIB):
+Otomasi berjalan rutin pada jam: 01:00, 04:00, 07:00, 10:00, 13:00, 16:00, 19:00, dan 22:00 WIB.
+
+🚀 Panduan Penggunaan WebGIS
+Akses Dashboard: Buka link WebGIS publik pada browser HP atau laptop.
+
+Pahami Informasi Awal: Tinjau Pop-up petunjuk operasional, centang persetujuan, lalu klik "Oke, Saya Paham".
+
+Pantau Statistik Sidebar: Lihat rekapitulasi jumlah titik api per tingkat prioritas dan stempel waktu Update Terakhir.
+
+Interaksi Peta:
+
+Klik Titik Hotspot: Untuk menampilkan popup detail koordinat (X,Y), desa, sumber satelit, serta status kawasan.
+
+Gunakan Tool Ukur (Kanan Atas): Untuk menghitung jarak tim ke lokasi atau menghitung luas area terbakar.
+
+Tombol Cetak PDF A4: Pilih fokus desa pada dropdown di kiri atas, lalu klik Cetak PDF (A4) untuk mencetak peta lapangan.
