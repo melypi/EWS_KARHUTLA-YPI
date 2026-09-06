@@ -64,7 +64,7 @@ Analisis tumpang susun (*spatial overlay*) dijalankan menggunakan algoritma Pyth
 
 ---
 
-## Arsitektur & Otomasi Sistem
+## ⚙️ Arsitektur & Otomasi Sistem
 
 Sistem ini berjalan 100% secara **serverless** dan gratis memanfaatkan alur kerja **GitHub Actions** dan **GitHub Pages**:
 
@@ -77,11 +77,11 @@ graph LR
     B -->|3. Generate Output| F[CSV Data /data/]
     D -->|4. Display| G[WebGIS GitHub Pages]
     E -->|4. Update UI Dashboard| G
+```
 
+### ⏰ Jadwal Eksekusi Otomatis (WIB):
+Otomasi berjalan rutin pada jam: **01:00**, **04:00**, **07:00**, **10:00**, **13:00**, **16:00**, **19:00**, dan **22:00 WIB**.
 
-
-Jadwal Eksekusi Otomatis (WIB):
-Otomasi berjalan rutin pada jam: 01:00, 04:00, 07:00, 10:00, 13:00, 16:00, 19:00, dan 22:00 WIB.
 
 Panduan Penggunaan WebGIS
 Akses Dashboard: Buka link WebGIS publik pada browser HP atau laptop.
