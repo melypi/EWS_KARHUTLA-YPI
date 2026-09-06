@@ -64,7 +64,7 @@ Analisis tumpang susun (*spatial overlay*) dijalankan menggunakan algoritma Pyth
 
 ---
 
-## ⚙️ Arsitektur & Otomasi Sistem
+## Arsitektur & Otomasi Sistem
 
 Sistem ini berjalan 100% secara **serverless** dan gratis memanfaatkan alur kerja **GitHub Actions** dan **GitHub Pages**:
 
@@ -119,8 +119,8 @@ karhutla/
 
 
 
-📬 Kontak & Pengembang
-Pengembang: MEL Yayasan Planet Indonesia
+Kontak & Pengembang
+Pengembang: MEL Yayasan Planet Indonesia - arif@planetindonesia.org
 Web Portal: https://www.planetindonesia.org
 Lokasi Fokus: Seluruh Desa Dampingan YPI, Provinsi Kalimantan Barat, Indonesia.
 
