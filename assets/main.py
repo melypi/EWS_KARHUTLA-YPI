@@ -186,7 +186,7 @@ def analisis_prioritas(df_hotspot, waktu_scraping_str):
 
     gdf_hotspot['Prioritas_Satgas'] = gdf_hotspot.apply(tentukan_prioritas, axis=1)
     
-    # Simpan file CSV dengan prefix tanggal & jam scraping (Contoh: 20260907_1606_analisis_prioritas_hotspot.csv)
+    # Simpan file CSV dengan prefix tanggal & jam scraping
     file_output = os.path.join(INPUT_DIR, f'{waktu_scraping_str}_analisis_prioritas_hotspot.csv')
     df_final = pd.DataFrame(gdf_hotspot.drop(columns='geometry'))
     df_final.to_csv(file_output, index=False)
@@ -343,13 +343,25 @@ def visualisasi_peta(gdf_hotspot, gdf_desa, gdf_buffer):
     hotspot_group.add_to(peta)
 
     legend_html = '''
-    <div class="map-legend-box" style="
-        position: fixed; bottom: 30px; left: 30px; width: 220px; z-index: 9999; 
-        background-color: rgba(255, 255, 255, 0.95); border: 2px solid #333; 
-        border-radius: 6px; padding: 10px; font-family: Arial, sans-serif; font-size: 11px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    ">
-        <b style="font-size: 12px; color: #000;">LEGENDA PRIORITAS</b><br>
+    <style>
+        .map-legend-box {
+            position: fixed; bottom: 30px; left: 30px; z-index: 9999; 
+            background-color: rgba(255, 255, 255, 0.95); border: 2px solid #333; 
+            border-radius: 6px; padding: 10px; font-family: Arial, sans-serif; font-size: 11px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3); width: 220px;
+        }
+        @media (max-width: 768px) {
+            .map-legend-box {
+                bottom: 20px; left: 15px; width: 165px; padding: 8px; font-size: 9px;
+                background-color: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(4px);
+            }
+            .map-legend-box b { font-size: 10px !important; }
+            .map-legend-box i { width: 8px !important; height: 8px !important; margin-right: 4px !important; }
+        }
+    </style>
+    <div class="map-legend-box">
+        <b style="color: #000;">LEGENDA PRIORITAS</b><br>
         <hr style="margin: 4px 0 6px 0; border: 0; border-top: 1px solid #666;">
         <i style="background: red; width: 10px; height: 10px; float: left; margin-right: 6px; border-radius: 50%; border: 1px solid #000;"></i> Prioritas 1 (Tinggi)<br>
         <i style="background: orange; width: 10px; height: 10px; float: left; margin-right: 6px; border-radius: 50%; border: 1px solid #000; margin-top: 3px;"></i> Prioritas 2 (Sedang)<br>
@@ -406,151 +418,122 @@ def visualisasi_peta(gdf_hotspot, gdf_desa, gdf_buffer):
 
         @media screen {{
             .print-layout {{ display: none !important; }}
-            #print-menu {{
-                position: fixed; 
+            
+            /* Kontainer Menu Cetak Interaktif */
+            #print-control-container {{
+                position: absolute;
                 top: 15px; 
-                left: 60px; 
+                left: 55px; 
                 z-index: 9999;
-                background: white; 
-                padding: 8px 12px; 
-                border-radius: 5px;
-                border: 2px solid #333; 
-                box-shadow: 0 2px 6px rgba(0,0,0,0.3); 
-                font-family: Arial, sans-serif; 
+                background: white;
+                border: 2px solid rgba(0,0,0,0.2);
+                border-radius: 4px;
+                box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+                font-family: Arial, sans-serif;
+                overflow: hidden;
+            }}
+            
+            /* Tombol Ikon (Selalu Tampil) */
+            #print-icon {{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 34px;
+                height: 34px;
+                cursor: pointer;
+                background-color: #fff;
+                font-size: 16px;
+                transition: background 0.2s;
+            }}
+            #print-icon:hover {{ background-color: #f4f4f4; }}
+            
+            /* Isi Menu (Tersembunyi secara default) */
+            #print-menu-content {{
+                display: none;
+                flex-direction: column;
+                gap: 8px;
+                padding: 10px;
+                border-top: 1px solid #ddd;
+                min-width: 220px;
                 font-size: 12px;
             }}
-            #print-menu select {{
-                padding: 4px; font-size: 12px; border-radius: 3px; border: 1px solid #ccc;
+            
+            /* Class active untuk menampilkan menu */
+            #print-control-container.active #print-menu-content {{
+                display: flex;
             }}
-            #print-menu button {{
-                padding: 5px 10px; font-size: 12px; cursor: pointer; font-weight: bold;
-                background-color: #28a745; color: white; border: none; border-radius: 3px;
-                margin-left: 5px;
+
+            #print-menu-content select {{
+                padding: 5px; font-size: 12px; border-radius: 3px; border: 1px solid #ccc; width: 100%;
             }}
-            #print-menu button:hover {{ background-color: #218838; }}
+            #print-menu-content button {{
+                padding: 6px 10px; font-size: 12px; cursor: pointer; font-weight: bold;
+                background-color: #28a745; color: white; border: none; border-radius: 3px; width: 100%;
+            }}
+            #print-menu-content button:hover {{ background-color: #218838; }}
+
+            /* --- TAMPILAN MOBILE --- */
+            @media (max-width: 768px) {{
+                #print-control-container {{
+                    top: 65px; /* Geser ke bawah tombol sidebar */
+                    left: 15px; 
+                }}
+                #print-icon {{
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 6px;
+                }}
+                #print-menu-content {{
+                    background: rgba(255, 255, 255, 0.95);
+                    backdrop-filter: blur(4px);
+                }}
+            }}
         }}
 
         @media print {{
-            @page {{ 
-                size: A4 landscape; 
-                margin: 1cm; 
-            }}
-            body, html, .folium-map {{ 
-                width: 100% !important; 
-                height: 100% !important; 
-                margin: 0; 
-                padding: 0; 
-            }}
-            
-            #print-menu, .leaflet-control-container, .map-legend-box {{ display: none !important; }}
+            @page {{ size: A4 landscape; margin: 1cm; }}
+            body, html, .folium-map {{ width: 100% !important; height: 100% !important; margin: 0; padding: 0; }}
+            #print-control-container, .leaflet-control-container, .map-legend-box {{ display: none !important; }}
             
             .print-layout {{ 
-                display: block !important; 
-                position: fixed; 
-                z-index: 9999; 
-                background: rgba(255, 255, 255, 0.95); 
-                padding: 10px 14px; 
-                border: 1.5px solid #000; 
-                font-family: Arial, sans-serif;
-                box-shadow: none;
-                border-radius: 4px;
+                display: block !important; position: fixed; z-index: 9999; 
+                background: rgba(255, 255, 255, 0.95); padding: 10px 14px; 
+                border: 1.5px solid #000; font-family: Arial, sans-serif; box-shadow: none; border-radius: 4px;
             }}
+            .print-header {{ top: 0.5cm; right: 0.5cm; text-align: left; min-width: 280px; }}
+            .print-header h2 {{ margin: 0 0 6px 0; font-size: 14px; font-weight: bold; color: #b30000; text-transform: uppercase; border-bottom: 1.5px solid #000; padding-bottom: 4px; text-align: center; }}
+            .print-header table {{ width: 100%; font-size: 10px; border-collapse: collapse; color: #000; }}
+            .print-header td {{ padding: 2px 0; vertical-align: top; }}
             
-            .print-header {{ 
-                top: 0.5cm; 
-                right: 0.5cm; 
-                text-align: left; 
-                min-width: 280px;
-            }}
-            .print-header h2 {{ 
-                margin: 0 0 6px 0; 
-                font-size: 14px; 
-                font-weight: bold;
-                color: #b30000; 
-                text-transform: uppercase; 
-                border-bottom: 1.5px solid #000;
-                padding-bottom: 4px;
-                text-align: center;
-            }}
-            .print-header table {{
-                width: 100%;
-                font-size: 10px;
-                border-collapse: collapse;
-                color: #000;
-            }}
-            .print-header td {{
-                padding: 2px 0;
-                vertical-align: top;
-            }}
-            
-            .print-legend {{ 
-                bottom: 0.5cm; 
-                left: 0.5cm; 
-                min-width: 190px; 
-            }}
-            .print-legend h4 {{ 
-                margin: 0 0 6px 0; 
-                font-size: 11px; 
-                font-weight: bold;
-                text-align: center; 
-                border-bottom: 1.5px solid #000; 
-                padding-bottom: 4px; 
-                text-transform: uppercase; 
-            }}
-            .print-legend ul {{ 
-                list-style: none; 
-                padding: 0; 
-                margin: 0; 
-                font-size: 10px; 
-            }}
-            .print-legend li {{ 
-                margin-bottom: 5px; 
-                display: flex; 
-                align-items: center; 
-                font-weight: 500;
-            }}
-            .print-legend .dot {{ 
-                width: 12px; 
-                height: 12px; 
-                margin-right: 8px; 
-                border: 1px solid #000; 
-                display: inline-block; 
-                border-radius: 50%; 
-                flex-shrink: 0;
-            }}
+            .print-legend {{ bottom: 0.5cm; left: 0.5cm; min-width: 190px; }}
+            .print-legend h4 {{ margin: 0 0 6px 0; font-size: 11px; font-weight: bold; text-align: center; border-bottom: 1.5px solid #000; padding-bottom: 4px; text-transform: uppercase; }}
+            .print-legend ul {{ list-style: none; padding: 0; margin: 0; font-size: 10px; }}
+            .print-legend li {{ margin-bottom: 5px; display: flex; align-items: center; font-weight: 500; }}
+            .print-legend .dot {{ width: 12px; height: 12px; margin-right: 8px; border: 1px solid #000; display: inline-block; border-radius: 50%; flex-shrink: 0; }}
         }}
     </style>
 
-    <div id="print-menu">
-        <b>Fokus Cetak:</b> 
-        <select id="desa-selector" onchange="zoomToSelectedDesa()">
-            <option value="current">-- Cakupan Layar Saat Ini --</option>
-            {''.join([f'<option value="{desa}">{desa}</option>' for desa in sorted(village_bounds.keys())])}
-        </select>
-        <button onclick="window.print()">🖨️ Cetak PDF (A4)</button>
+    <div id="print-control-container" class="leaflet-control">
+        <div id="print-icon" onclick="togglePrintMenu()" title="Buka Menu Cetak">🖨️</div>
+        
+        <div id="print-menu-content">
+            <b>Fokus Cetak:</b> 
+            <select id="desa-selector" onchange="zoomToSelectedDesa()">
+                <option value="current">-- Cakupan Layar Saat Ini --</option>
+                {''.join([f'<option value="{desa}">{desa}</option>' for desa in sorted(village_bounds.keys())])}
+            </select>
+            <button onclick="window.print()">Cetak PDF (A4)</button>
+        </div>
     </div>
 
     <div class="print-layout print-header">
         <h2>Peta Prioritas Operasi Karhutla</h2>
         <table>
-            <tr>
-                <td style="width: 85px;"><b>Waktu Cetak</b></td>
-                <td style="width: 10px;">:</td>
-                <td>{waktu_cetak}</td>
-            </tr>
-            <tr>
-                <td><b>Sumber Data</b></td>
-                <td>:</td>
-                <td>Satgas / SiPongi Modis</td>
-            </tr>
-            <tr>
-                <td><b>Sistem Proyeksi</b></td>
-                <td>:</td>
-                <td>WGS 84 (EPSG:4326)</td>
-            </tr>
+            <tr><td style="width: 85px;"><b>Waktu Cetak</b></td><td style="width: 10px;">:</td><td>{waktu_cetak}</td></tr>
+            <tr><td><b>Sumber Data</b></td><td>:</td><td>Satgas / SiPongi Modis</td></tr>
+            <tr><td><b>Sistem Proyeksi</b></td><td>:</td><td>WGS 84 (EPSG:4326)</td></tr>
         </table>
     </div>
-
     <div class="print-layout print-legend">
         <h4>Legenda Prioritas</h4>
         <ul>
@@ -565,16 +548,17 @@ def visualisasi_peta(gdf_hotspot, gdf_desa, gdf_buffer):
     <script>
         var villageBounds = {json.dumps(village_bounds)};
         
+        function togglePrintMenu() {{
+            var container = document.getElementById('print-control-container');
+            container.classList.toggle('active');
+        }}
+
         function zoomToSelectedDesa() {{
             var selectedDesa = document.getElementById('desa-selector').value;
-            
             for (var key in window) {{
                 if (key.startsWith("map_") && window[key] instanceof L.Map) {{
                     var mapInstance = window[key];
-                    
-                    if (selectedDesa === "current") {{
-                        // Tetap pada tampilan saat ini
-                    }} else if (villageBounds[selectedDesa]) {{
+                    if (selectedDesa !== "current" && villageBounds[selectedDesa]) {{
                         mapInstance.fitBounds(villageBounds[selectedDesa]);
                     }}
                     break;
