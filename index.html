@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EWS Karhutla YPI</title>
     
-    <!-- CSS Bootstrap 5 & FontAwesome -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -204,17 +203,6 @@
             color: #fff;
         }
 
-        @media (max-width: 768px) {
-            .app-sidebar {
-                position: absolute;
-                height: 100%;
-                box-shadow: 5px 0 15px rgba(0,0,0,0.5);
-            }
-            .app-sidebar.collapsed {
-                margin-left: -340px;
-            }
-        }
-
         .welcome-overlay {
             position: fixed;
             top: 0;
@@ -284,11 +272,91 @@
             cursor: not-allowed;
             border: 1px solid #444;
         }
+
+        /* --- TAMPILAN FULLSCREEN MAP UNTUK MOBILE --- */
+        @media (max-width: 768px) {
+            .app-layout {
+                display: block; 
+            }
+            
+            .app-workspace {
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                height: 100vh;
+                width: 100vw;
+                z-index: auto; 
+            }
+
+            /* --- PERBAIKAN HEADER & IKON --- */
+            .app-header {
+                position: absolute;
+                top: 15px;
+                left: 60px; 
+                right: 175px; 
+                height: 40px;
+                padding: 0 10px;
+                background: rgba(0, 34, 43, 0.85); 
+                backdrop-filter: blur(5px);
+                border: 1px solid var(--border-teal);
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: center; /* Memastikan teks di tengah */
+            }
+
+            /* Menyembunyikan elemen sub-judul, badge, dan IKON API secara spesifik di HP */
+            .app-header small, 
+            .brand-badge, 
+            .app-header .fa-fire-flame-curved { 
+                display: none !important; 
+            }
+            
+            /* Mengurangi jarak gap bawaan bootstrap (gap-3) yang memakan ruang */
+            .app-header .d-flex {
+                gap: 0 !important;
+                width: 100%;
+            }
+
+            /* Memastikan teks judul pas dan terpotong rapi (...) jika layar sangat sempit */
+            .app-header .h6 { 
+                font-size: 0.75rem !important; 
+                margin: 0; 
+                width: 100%;
+                text-align: center;
+                white-space: nowrap; 
+                overflow: hidden; 
+                text-overflow: ellipsis; 
+            }
+            
+            .sidebar-toggle {
+                top: 15px;
+                left: 15px;
+                width: 40px;
+                height: 40px;
+                z-index: 1001;
+            }
+            
+            .app-sidebar {
+                position: absolute;
+                top: 0; left: 0;
+                height: 100vh;
+                z-index: 2000; 
+                box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+            }
+            .app-sidebar.collapsed {
+                margin-left: -340px;
+            }
+            
+            .welcome-body table {
+                display: block; width: 100%; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- POP-UP INFORMASI (WELCOME MODAL) -->
     <div id="welcomeModal" class="welcome-overlay">
         <div class="welcome-modal-content">
             <div class="welcome-header">
@@ -388,51 +456,42 @@
     </div>
 
     <div class="app-layout">
-        <!-- HEADER UTAMA -->
         <header class="app-header d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-3">
                 <i class="fa-solid fa-fire-flame-curved fs-4" style="color: var(--accent-orange);"></i>
                 <div>
                     <div class="d-flex align-items-center gap-2">
-                        <h1 class="h6 mb-0 fw-bold" style="color: var(--text-offwhite);">EWS KARHUTLA - YAYASAN PLANET INDONESIA</h1>
-                        <span class="brand-badge"><i class="fa-solid fa-circle me-1" style="color: #ff0055;"></i> LIVE MONITORING</span>
+                        <h1 class="h6 mb-0 fw-bold" style="color: var(--text-offwhite);">EWS KARHUTLA - YPI</h1>
+                        <span class="brand-badge"><i class="fa-solid fa-circle me-1" style="color: #ff0055;"></i> LIVE</span>
                     </div>
-                    <small style="color: var(--text-muted-teal); font-size: 0.7rem;">Prioritas Operasional Satgas dalam Upaya Mitigasi dan Penanganan Karhutla di Seluruh Desa Dampingan YPI Kalimantan Barat</small>
+                    <small style="color: var(--text-muted-teal); font-size: 0.7rem;">Prioritas Operasional Satgas dalam Upaya Mitigasi dan Penanganan Karhutla</small>
                 </div>
-            </div>
-
-             <!-- KONTROL APLIKASI (MENUJU FOLDER DATA DI GITHUB) -->
-            <div class="d-flex align-items-center gap-2">
-                <a href="https://github.com/melypi/EWS_KARHUTLA-YPI/tree/main/data"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="btn btn-sm btn-custom-accent fw-semibold">
-                    <i class="fa-solid fa-download me-1"></i>
-                    <span class="d-none d-sm-inline">CSV Data</span>
-                </a>
             </div>
         </header>
 
-        <!-- AREA WORKSPACE -->
         <div class="app-workspace">
             
-            <!-- PANEL SIDEBAR -->
-            <aside class="app-sidebar" id="sidebarPanel">
+            <aside class="app-sidebar collapsed" id="sidebarPanel">
                 <div class="sidebar-header d-flex justify-content-between align-items-center">
                     <span><i class="fa-solid fa-chart-pie me-2"></i> Ringkasan Prioritas</span>
                     <button class="btn btn-sm p-0" style="color: var(--text-muted-teal);" onclick="toggleSidebar()"><i class="fa-solid fa-xmark fs-5"></i></button>
                 </div>
                 
                 <div class="sidebar-content">
-                    <p class="small mb-2" style="color: var(--text-muted-teal); font-size: 0.78rem;">Prioritas ini dirancang untuk memastikan Satgas Desa dapat bertindak cepat, tepat, dan efisien di tengah keterbatasan tenaga serta peralatan pemadaman.</p>
+                    <p class="small mb-3" style="color: var(--text-muted-teal); font-size: 0.78rem;">Prioritas ini dirancang untuk memastikan Satgas Desa dapat bertindak cepat, tepat, dan efisien di tengah keterbatasan tenaga serta peralatan pemadaman.</p>
 
-                    <!-- WAKTU UPDATE SIPONGI / SCRAPING -->
+                    <a href="https://github.com/melypi/EWS_KARHUTLA-YPI/tree/main/data"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn btn-custom-accent w-100 mb-3 fw-semibold py-2" style="font-size: 0.85rem;">
+                        <i class="fa-solid fa-download me-1"></i> Unduh CSV Data
+                    </a>
+
                     <div class="mb-3 p-2 rounded" style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-teal); font-size: 0.72rem; color: var(--text-muted-teal);">
                         <i class="fa-regular fa-clock me-1" style="color: var(--accent-yellow);"></i> 
                         Update Terakhir: <strong id="lastUpdateText" style="color: var(--text-offwhite);">Memuat...</strong>
                     </div>
 
-                    <!-- STAT CARDS -->
                     <div class="stat-card p1">
                         <div>
                             <div class="fw-bold card-title-text">Prioritas 1 (Tinggi)</div>
@@ -477,7 +536,6 @@
                         <div class="val" id="cntP4">-</div>
                     </div>
 
-                    <!-- PETUNJUK OPERASIONAL -->
                     <div class="mt-4 info-box">
                         <h6 class="fw-bold fs-7 mb-2" style="color: var(--text-offwhite);"><i class="fa-solid fa-circle-info me-1" style="color: var(--accent-yellow);"></i> Petunjuk Operasional</h6>
                         <ul class="ps-3 mb-0" style="color: var(--text-muted-teal); font-size: 0.73rem;">
@@ -488,12 +546,10 @@
                 </div>
             </aside>
 
-            <!-- KONTROL BUKA SIDEBAR -->
             <button class="sidebar-toggle" onclick="toggleSidebar()" title="Buka/Tutup Panel Statistik">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
-            <!-- VIEWPORT PETA (IFRAME) -->
             <main class="map-viewport">
                 <iframe id="mapFrame" src="peta.html"></iframe>
             </main>
@@ -501,7 +557,6 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT KONTROL -->
     <script>
         function toggleSidebar() {
             document.getElementById('sidebarPanel').classList.toggle('collapsed');
