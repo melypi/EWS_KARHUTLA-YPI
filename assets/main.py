@@ -29,7 +29,7 @@ OUTPUT_DIR = BASE_DIR
 # ==============================================================================
 # 2. FUNGSI SCRAPING SIPONGI (Harvesting Data)
 # ==============================================================================
-def scrape_sipongi(provinsi_kode="11", late_hours=12):
+def scrape_sipongi(provinsi_kode="11", late_hours=24):
     # Catat tanggal dan jam tepat saat scraping dilakukan
     waktu_scraping_dt = datetime.now()
     waktu_scraping_str = waktu_scraping_dt.strftime("%Y%m%d_%H%M")
