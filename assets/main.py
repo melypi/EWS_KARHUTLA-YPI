@@ -29,7 +29,7 @@ OUTPUT_DIR = BASE_DIR
 # ==============================================================================
 # 2. FUNGSI SCRAPING SIPONGI (Harvesting Data)
 # ==============================================================================
-def scrape_sipongi(provinsi_kode="11", late_hours=48):
+def scrape_sipongi(provinsi_kode="11", late_hours=12):
     # Catat tanggal dan jam tepat saat scraping dilakukan
     waktu_scraping_dt = datetime.now()
     waktu_scraping_str = waktu_scraping_dt.strftime("%Y%m%d_%H%M")
@@ -148,14 +148,6 @@ def analisis_prioritas(df_hotspot, waktu_scraping_str):
     hs_in_desa = gpd.sjoin(gdf_hotspot_utm, gdf_desa_utm, how='left', predicate='within')
     hs_in_buffer = gpd.sjoin(gdf_hotspot_utm, gdf_buffer_utm, how='left', predicate='within')
     hs_in_kawasan = gpd.sjoin(gdf_hotspot_utm, gdf_kawasan_utm, how='left', predicate='within')
-
-    # ==============================================================================
-    # TAMBAHAN FIX: Hapus duplikat indeks akibat overlap spasial pada polygon SHP
-    # ==============================================================================
-    hs_in_desa = hs_in_desa[~hs_in_desa.index.duplicated(keep='first')]
-    hs_in_buffer = hs_in_buffer[~hs_in_buffer.index.duplicated(keep='first')]
-    hs_in_kawasan = hs_in_kawasan[~hs_in_kawasan.index.duplicated(keep='first')]
-    # ==============================================================================
 
     gdf_hotspot['in_desa'] = ~hs_in_desa['index_right'].isna()
     gdf_hotspot['in_buffer'] = ~hs_in_buffer['index_right'].isna()
@@ -317,3 +309,288 @@ def visualisasi_peta(gdf_hotspot, gdf_desa, gdf_buffer):
         kk_stat = 'Ya' if row.get('is_kk', False) else 'Bukan'
 
         popup_html = f"""
+        <div style="font-family: Arial, sans-serif; width: 300px;">
+            <h4 style="margin:0; padding:5px; background-color:{warna}; color:{'black' if warna in ['yellow', 'white'] else 'white'}; text-align:center; border-radius:3px;">
+                {prioritas}
+            </h4>
+            <table style="width:100%; margin-top:10px; font-size:12px; border-collapse: collapse;">
+                <tr><td style="width:130px;"><b>Desa</b></td><td style="width:10px;">:</td><td>{row['Desa']}</td></tr>
+                <tr><td><b>Tanggal</b></td><td>:</td><td>{tanggal}</td></tr>
+                <tr><td><b>Jam</b></td><td>:</td><td>{jam}</td></tr>
+                <tr><td><b>Sumber</b></td><td>:</td><td>SiPongi ({row['Satelit']})</td></tr>
+                <tr><td><b>Confidence</b></td><td>:</td><td>{row['Confidence']}</td></tr>
+                <tr><td><b>Hutan</b></td><td>:</td><td>{hutan_stat}</td></tr>
+                <tr><td><b>Gambut</b></td><td>:</td><td>{gambut_stat}</td></tr>
+                <tr><td><b>Konservasi/Lindung</b></td><td>:</td><td>{kk_stat}</td></tr>
+                <tr><td><b>Latitude (Y)</b></td><td>:</td><td>{row['Latitude']:.5f}</td></tr>
+                <tr><td><b>Longitude (X)</b></td><td>:</td><td>{row['Longitude']:.5f}</td></tr>
+            </table>
+        </div>
+        """
+
+        folium.CircleMarker(
+            location=[row['Latitude'], row['Longitude']],
+            radius=radius,
+            color='black',
+            weight=1,
+            fill=True,
+            fill_color=warna,
+            fill_opacity=0.9 if prioritas.startswith("Prioritas") else 0.4,
+            popup=folium.Popup(popup_html, max_width=320),
+            tooltip=prioritas
+        ).add_to(hotspot_group)
+
+    hotspot_group.add_to(peta)
+
+    legend_html = '''
+    <style>
+        .map-legend-box {
+            position: fixed; bottom: 30px; left: 30px; z-index: 9999; 
+            background-color: rgba(255, 255, 255, 0.95); border: 2px solid #333; 
+            border-radius: 6px; padding: 10px; font-family: Arial, sans-serif; font-size: 11px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3); width: 220px;
+        }
+        @media (max-width: 768px) {
+            .map-legend-box {
+                bottom: 20px; left: 15px; width: 165px; padding: 8px; font-size: 9px;
+                background-color: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(4px);
+            }
+            .map-legend-box b { font-size: 10px !important; }
+            .map-legend-box i { width: 8px !important; height: 8px !important; margin-right: 4px !important; }
+        }
+    </style>
+    <div class="map-legend-box">
+        <b style="color: #000;">LEGENDA PRIORITAS</b><br>
+        <hr style="margin: 4px 0 6px 0; border: 0; border-top: 1px solid #666;">
+        <i style="background: red; width: 10px; height: 10px; float: left; margin-right: 6px; border-radius: 50%; border: 1px solid #000;"></i> Prioritas 1 (Tinggi)<br>
+        <i style="background: orange; width: 10px; height: 10px; float: left; margin-right: 6px; border-radius: 50%; border: 1px solid #000; margin-top: 3px;"></i> Prioritas 2 (Sedang)<br>
+        <i style="background: yellow; width: 10px; height: 10px; float: left; margin-right: 6px; border-radius: 50%; border: 1px solid #000; margin-top: 3px;"></i> Prioritas 3 (Rendah)<br>
+        <i style="background: blue; width: 10px; height: 10px; float: left; margin-right: 8px; border-radius: 50%; border: 1px solid #000; margin-top: 3px;"></i> Prioritas 4 (Waspada)<br>
+        <i style="background: gray; width: 10px; height: 10px; float: left; margin-right: 6px; border-radius: 50%; border: 1px solid #000; margin-top: 3px;"></i> Luar Pantauan (>1000m)<br>
+    </div>
+    '''
+    peta.get_root().html.add_child(folium.Element(legend_html))
+
+    folium.LayerControl(position='topright', collapsed=False).add_to(peta)
+
+    MeasureControl(
+        position='topright', 
+        primary_length_unit='meters', 
+        secondary_length_unit='kilometers', 
+        primary_area_unit='sqmeters', 
+        secondary_area_unit='hectares'
+    ).add_to(peta)
+    
+    LocateControl(
+        position='topright', 
+        strings={'title': 'Deteksi Lokasi Saya', 'popup': 'Lokasi Anda saat ini'}
+    ).add_to(peta)
+    
+    zoom_js = """
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            for (var key in window) {
+                if (key.startsWith("map_") && window[key] instanceof L.Map) {
+                    L.control.zoom({position: 'topright'}).addTo(window[key]);
+                }
+            }
+        });
+    </script>
+    """
+    peta.get_root().html.add_child(folium.Element(zoom_js))
+
+    village_bounds = {}
+    if not gdf_desa.empty:
+        for idx, row in gdf_desa.iterrows():
+            bounds = row.geometry.bounds
+            v_name = str(row[desa_col])
+            village_bounds[v_name] = [[bounds[1], bounds[0]], [bounds[3], bounds[2]]]
+
+    waktu_cetak = datetime.now().strftime("%d %B %Y %H:%M WIB")
+
+    print_module_html = f"""
+    <style>
+        * {{
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }}
+
+        @media screen {{
+            .print-layout {{ display: none !important; }}
+            
+            /* Kontainer Menu Cetak Interaktif */
+            #print-control-container {{
+                position: absolute;
+                top: 15px; 
+                left: 55px; 
+                z-index: 9999;
+                background: white;
+                border: 2px solid rgba(0,0,0,0.2);
+                border-radius: 4px;
+                box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+                font-family: Arial, sans-serif;
+                overflow: hidden;
+            }}
+            
+            /* Tombol Ikon (Selalu Tampil) */
+            #print-icon {{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 34px;
+                height: 34px;
+                cursor: pointer;
+                background-color: #fff;
+                font-size: 16px;
+                transition: background 0.2s;
+            }}
+            #print-icon:hover {{ background-color: #f4f4f4; }}
+            
+            /* Isi Menu (Tersembunyi secara default) */
+            #print-menu-content {{
+                display: none;
+                flex-direction: column;
+                gap: 8px;
+                padding: 10px;
+                border-top: 1px solid #ddd;
+                min-width: 220px;
+                font-size: 12px;
+            }}
+            
+            /* Class active untuk menampilkan menu */
+            #print-control-container.active #print-menu-content {{
+                display: flex;
+            }}
+
+            #print-menu-content select {{
+                padding: 5px; font-size: 12px; border-radius: 3px; border: 1px solid #ccc; width: 100%;
+            }}
+            #print-menu-content button {{
+                padding: 6px 10px; font-size: 12px; cursor: pointer; font-weight: bold;
+                background-color: #28a745; color: white; border: none; border-radius: 3px; width: 100%;
+            }}
+            #print-menu-content button:hover {{ background-color: #218838; }}
+
+            /* --- TAMPILAN MOBILE --- */
+            @media (max-width: 768px) {{
+                #print-control-container {{
+                    top: 65px; /* Geser ke bawah tombol sidebar */
+                    left: 15px; 
+                }}
+                #print-icon {{
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 6px;
+                }}
+                #print-menu-content {{
+                    background: rgba(255, 255, 255, 0.95);
+                    backdrop-filter: blur(4px);
+                }}
+            }}
+        }}
+
+        @media print {{
+            @page {{ size: A4 landscape; margin: 1cm; }}
+            body, html, .folium-map {{ width: 100% !important; height: 100% !important; margin: 0; padding: 0; }}
+            #print-control-container, .leaflet-control-container, .map-legend-box {{ display: none !important; }}
+            
+            .print-layout {{ 
+                display: block !important; position: fixed; z-index: 9999; 
+                background: rgba(255, 255, 255, 0.95); padding: 10px 14px; 
+                border: 1.5px solid #000; font-family: Arial, sans-serif; box-shadow: none; border-radius: 4px;
+            }}
+            .print-header {{ top: 0.5cm; right: 0.5cm; text-align: left; min-width: 280px; }}
+            .print-header h2 {{ margin: 0 0 6px 0; font-size: 14px; font-weight: bold; color: #b30000; text-transform: uppercase; border-bottom: 1.5px solid #000; padding-bottom: 4px; text-align: center; }}
+            .print-header table {{ width: 100%; font-size: 10px; border-collapse: collapse; color: #000; }}
+            .print-header td {{ padding: 2px 0; vertical-align: top; }}
+            
+            .print-legend {{ bottom: 0.5cm; left: 0.5cm; min-width: 190px; }}
+            .print-legend h4 {{ margin: 0 0 6px 0; font-size: 11px; font-weight: bold; text-align: center; border-bottom: 1.5px solid #000; padding-bottom: 4px; text-transform: uppercase; }}
+            .print-legend ul {{ list-style: none; padding: 0; margin: 0; font-size: 10px; }}
+            .print-legend li {{ margin-bottom: 5px; display: flex; align-items: center; font-weight: 500; }}
+            .print-legend .dot {{ width: 12px; height: 12px; margin-right: 8px; border: 1px solid #000; display: inline-block; border-radius: 50%; flex-shrink: 0; }}
+        }}
+    </style>
+
+    <div id="print-control-container" class="leaflet-control">
+        <div id="print-icon" onclick="togglePrintMenu()" title="Buka Menu Cetak">🖨️</div>
+        
+        <div id="print-menu-content">
+            <b>Fokus Cetak:</b> 
+            <select id="desa-selector" onchange="zoomToSelectedDesa()">
+                <option value="current">-- Cakupan Layar Saat Ini --</option>
+                {''.join([f'<option value="{desa}">{desa}</option>' for desa in sorted(village_bounds.keys())])}
+            </select>
+            <button onclick="window.print()">Cetak PDF (A4)</button>
+        </div>
+    </div>
+
+    <div class="print-layout print-header">
+        <h2>Peta Prioritas Operasi Karhutla</h2>
+        <table>
+            <tr><td style="width: 85px;"><b>Waktu Cetak</b></td><td style="width: 10px;">:</td><td>{waktu_cetak}</td></tr>
+            <tr><td><b>Sumber Data</b></td><td>:</td><td>Satgas / SiPongi Modis</td></tr>
+            <tr><td><b>Sistem Proyeksi</b></td><td>:</td><td>WGS 84 (EPSG:4326)</td></tr>
+        </table>
+    </div>
+    <div class="print-layout print-legend">
+        <h4>Legenda Prioritas</h4>
+        <ul>
+            <li><span class="dot" style="background-color: #ff0000 !important;"></span> Prioritas 1 (Tinggi)</li>
+            <li><span class="dot" style="background-color: #ffa500 !important;"></span> Prioritas 2 (Sedang)</li>
+            <li><span class="dot" style="background-color: #ffff00 !important;"></span> Prioritas 3 (Rendah)</li>
+            <li><span class="dot" style="background-color: #0000ff !important;"></span> Prioritas 4 (Waspada)</li>
+            <li><span class="dot" style="background-color: #808080 !important;"></span> Luar Pantauan (&gt;1000m)</li>
+        </ul>
+    </div>
+
+    <script>
+        var villageBounds = {json.dumps(village_bounds)};
+        
+        function togglePrintMenu() {{
+            var container = document.getElementById('print-control-container');
+            container.classList.toggle('active');
+        }}
+
+        function zoomToSelectedDesa() {{
+            var selectedDesa = document.getElementById('desa-selector').value;
+            for (var key in window) {{
+                if (key.startsWith("map_") && window[key] instanceof L.Map) {{
+                    var mapInstance = window[key];
+                    if (selectedDesa !== "current" && villageBounds[selectedDesa]) {{
+                        mapInstance.fitBounds(villageBounds[selectedDesa]);
+                    }}
+                    break;
+                }}
+            }}
+        }}
+    </script>
+    """
+    
+    peta.get_root().html.add_child(folium.Element(print_module_html))
+
+    file_peta = os.path.join(OUTPUT_DIR, 'peta.html')
+    peta.save(file_peta)
+    print(f"\n✅ Peta interaktif + Modul Cetak A4 berhasil dibuat: {file_peta}")
+
+# ==============================================================================
+# EKSEKUSI PIPELINE UTAMA
+# ==============================================================================
+if __name__ == "__main__":
+    print("=" * 60)
+    print("MEMULAI SISTEM ANALISIS HOTSPOT".center(60))
+    print("=" * 60)
+    
+    df_raw_hotspot, waktu_scraping_str = scrape_sipongi(provinsi_kode="11", late_hours=12)
+    hasil = analisis_prioritas(df_raw_hotspot, waktu_scraping_str)
+    
+    if hasil is not None:
+        gdf_hs_analyzed, gdf_desa_shp, gdf_buffer_shp = hasil
+        
+        print("\n📊 RINGKASAN REKOMENDASI OPERASIONAL SATGAS:")
+        ringkasan = gdf_hs_analyzed['Prioritas_Satgas'].value_counts().reset_index()
+        ringkasan.columns = ['Prioritas', 'Jumlah Titik']
+        print(ringkasan.to_string(index=False))
+        
+        visualisasi_peta(gdf_hs_analyzed, gdf_desa_shp, gdf_buffer_shp)
