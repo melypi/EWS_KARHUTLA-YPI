@@ -1,0 +1,3 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Kendawangan,Air Hitam Besar,"Rabu, 28 Oktober 2026 00:58:00",NASA-SNPP,Medium,110.69749,-2.83778,False,False,False,True,False,True,Di Luar Area Pantauan (>1000m dari Desa)
+Kendawangan,Air Hitam Besar,"Rabu, 28 Oktober 2026 00:58:00",NASA-SNPP,Medium,110.701,-2.84625,False,False,False,True,False,True,Di Luar Area Pantauan (>1000m dari Desa)
