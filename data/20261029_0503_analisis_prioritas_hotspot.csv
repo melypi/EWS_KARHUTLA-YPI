@@ -1,0 +1,5 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Kelam Permai,Nanga Lebang,"Kamis, 29 Oktober 2026 00:39:00",NASA-SNPP,Medium,111.66562,0.2276,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Kendawangan,Air Hitam Besar,"Kamis, 29 Oktober 2026 00:39:00",NASA-SNPP,Medium,110.69682,-2.83992,False,False,False,True,False,True,Di Luar Area Pantauan (>1000m dari Desa)
+Kendawangan,Air Hitam Besar,"Kamis, 29 Oktober 2026 00:39:00",NASA-SNPP,Medium,110.70008,-2.84046,False,False,False,True,False,True,Di Luar Area Pantauan (>1000m dari Desa)
+Marau,Karya Baru,"Kamis, 29 Oktober 2026 00:39:00",NASA-SNPP,Medium,110.68529,-2.27414,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
