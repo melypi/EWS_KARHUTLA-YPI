@@ -1,5 +1,8 @@
 Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
 Belitang Hulu,Balai Sepuak,"Sabtu, 31 Oktober 2026 15:35:00",NASA-MODIS,Medium,111.16802,0.42846,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Manis Mata,Sungai Buluh,"Sabtu, 31 Oktober 2026 20:18:00",NASA-MODIS,Medium,111.01313,-2.56322,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Marau,Suka Karya,"Sabtu, 31 Oktober 2026 20:18:00",NASA-MODIS,Medium,110.71443,-2.17232,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Kendawangan,Air Hitam Besar,"Sabtu, 31 Oktober 2026 20:18:00",NASA-MODIS,Medium,110.69811,-2.83793,False,False,False,True,False,True,Di Luar Area Pantauan (>1000m dari Desa)
 Matan Hilir Utara,Kuala Tolak,"Sabtu, 31 Oktober 2026 12:59:00",NASA-NOAA20,Medium,110.10553,-1.43904,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
 Air Upas,Harapan Baru,"Sabtu, 31 Oktober 2026 01:41:00",NASA-SNPP,Medium,110.91566,-2.17794,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
 Manis Mata,Sengkuang Merabong,"Sabtu, 31 Oktober 2026 01:41:00",NASA-SNPP,Medium,110.92037,-2.17867,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
