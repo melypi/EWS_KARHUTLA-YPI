@@ -1,0 +1,9 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Kelam Permai,Kelam Sejahtera,"Rabu, 04 November 2026 00:43:00",NASA-NOAA20,Medium,111.65208,0.10413,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Sepauk,Sekujam Timbai,"Rabu, 04 November 2026 00:43:00",NASA-NOAA20,Medium,111.17793,-0.15445,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Batang Lupar,Sepandan,"Rabu, 04 November 2026 00:43:00",NASA-NOAA20,Medium,112.20415,0.95592,False,False,False,False,True,True,Di Luar Area Pantauan (>1000m dari Desa)
+Manis Mata,Suak Burung,"Rabu, 04 November 2026 00:45:00",NASA-NOAA20,Medium,111.06523,-2.32793,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Air Upas,Harapan Baru,"Rabu, 04 November 2026 00:45:00",NASA-NOAA20,Medium,110.86926,-2.15446,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Manis Mata,Kelampai,"Rabu, 04 November 2026 00:45:00",NASA-NOAA20,Medium,111.00648,-2.1555,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Marau,Bantan Sari,"Rabu, 04 November 2026 00:45:00",NASA-NOAA20,Medium,110.8643,-2.16218,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Nanga Tayap,Nanga Tayap,"Rabu, 04 November 2026 00:45:00",NASA-NOAA20,Medium,110.65252,-1.4741,False,False,True,False,False,True,Di Luar Area Pantauan (>1000m dari Desa)
