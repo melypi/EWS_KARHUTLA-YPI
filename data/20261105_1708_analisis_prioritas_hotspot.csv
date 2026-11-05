@@ -1,0 +1,12 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Nanga Tayap,Betenung,"Kamis, 05 November 2026 07:58:00",NASA-MODIS,Medium,110.80566,-1.56065,False,False,True,False,False,True,Di Luar Area Pantauan (>1000m dari Desa)
+Parindu,Hibun,"Kamis, 05 November 2026 15:26:00",NASA-MODIS,Medium,110.47402,0.21527,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Mukok,Layak Omang,"Kamis, 05 November 2026 15:26:00",NASA-MODIS,Medium,110.86607,0.22821,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Sokan,Nanga Potai,"Kamis, 05 November 2026 15:26:00",NASA-MODIS,Medium,111.5142,-0.92494,False,False,False,False,True,True,Di Luar Area Pantauan (>1000m dari Desa)
+Tumbang Titi,Segar Wangi,"Kamis, 05 November 2026 15:26:00",NASA-MODIS,Medium,110.55165,-1.86051,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Sekadau Hilir,Landau Kodah,"Kamis, 05 November 2026 13:07:00",NASA-NOAA20,Medium,110.95188,0.07775,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Serawai,Begori,"Kamis, 05 November 2026 13:05:00",NASA-NOAA20,Medium,112.51973,-0.26959,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Kapuas,Kelurahan Sungai Sengkuang,"Kamis, 05 November 2026 13:07:00",NASA-NOAA20,Medium,110.6517,0.21163,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Belimbing,Guhung,"Kamis, 05 November 2026 13:05:00",NASA-NOAA20,Medium,111.54002,-0.26348,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Kelam Permai,Ensaid Panjang,"Kamis, 05 November 2026 15:26:00",NASA-MODIS,Medium,111.73637,0.08878,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Hulu Sungai,Sekukun,"Kamis, 05 November 2026 15:26:00",NASA-MODIS,Medium,110.81817,-1.26672,False,False,True,False,False,True,Di Luar Area Pantauan (>1000m dari Desa)
