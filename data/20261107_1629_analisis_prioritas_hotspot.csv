@@ -1,0 +1,5 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Sandai,Sandai,"Sabtu, 07 November 2026 12:27:00",NASA-NOAA20,Medium,110.56631,-1.2965,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Tayan Hilir,Emberas,"Sabtu, 07 November 2026 12:29:00",NASA-NOAA20,Medium,110.15583,0.01162,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Jongkong,Jongkong Kiri Hulu,"Sabtu, 07 November 2026 12:29:00",NASA-NOAA20,Medium,112.35882,0.71885,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Jongkong,Jongkong Kiri Hulu,"Sabtu, 07 November 2026 12:29:00",NASA-NOAA20,Medium,112.36023,0.71813,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
