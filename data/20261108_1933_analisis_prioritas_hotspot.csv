@@ -1,0 +1,6 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Kapuas,Penyeladi,"Minggu, 08 November 2026 01:10:00",NASA-NOAA20,Medium,110.69485,0.06789,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Tayan Hilir,Cempedak,"Minggu, 08 November 2026 13:50:00",NASA-NOAA20,Medium,110.10934,0.05879,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Kapuas,Sungai Muntik,"Minggu, 08 November 2026 13:50:00",NASA-NOAA20,Medium,110.59307,0.04996,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Tayan Hilir,Cempedak,"Minggu, 08 November 2026 13:50:00",NASA-NOAA20,Medium,110.1055,0.0582,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Tayan Hilir,Lalang,"Minggu, 08 November 2026 13:50:00",NASA-NOAA20,High,110.0015,-0.03611,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
