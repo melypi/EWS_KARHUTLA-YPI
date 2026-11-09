@@ -1,5 +1,9 @@
 Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
-Tayan Hilir,Cempedak,"Minggu, 08 November 2026 13:50:00",NASA-NOAA20,Medium,110.10934,0.05879,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
-Kapuas,Sungai Muntik,"Minggu, 08 November 2026 13:50:00",NASA-NOAA20,Medium,110.59307,0.04996,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
-Tayan Hilir,Cempedak,"Minggu, 08 November 2026 13:50:00",NASA-NOAA20,Medium,110.1055,0.0582,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
-Tayan Hilir,Lalang,"Minggu, 08 November 2026 13:50:00",NASA-NOAA20,High,110.0015,-0.03611,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Marau,Riam Batu Gading,"Senin, 09 November 2026 13:31:00",NASA-NOAA20,Medium,110.73089,-2.10565,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Kendawangan,Danau Buntar,"Senin, 09 November 2026 13:31:00",NASA-NOAA20,Medium,110.92445,-2.65866,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Sungai Tebelian,Sungai Ukoi,"Senin, 09 November 2026 13:31:00",NASA-NOAA20,Medium,111.44421,-0.03256,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Toba,Balai Belungai,"Senin, 09 November 2026 13:31:00",NASA-NOAA20,Medium,110.16354,-0.15875,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Air Upas,Harapan Baru,"Senin, 09 November 2026 13:31:00",NASA-NOAA20,Medium,110.84671,-2.28264,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Manis Mata,Sengkuang Merabong,"Senin, 09 November 2026 13:31:00",NASA-NOAA20,Medium,110.96978,-2.16747,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Toba,Balai Belungai,"Senin, 09 November 2026 13:31:00",NASA-NOAA20,Medium,110.16413,-0.16283,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Kendawangan,Danau Buntar,"Senin, 09 November 2026 13:31:00",NASA-NOAA20,Medium,110.92071,-2.65925,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
