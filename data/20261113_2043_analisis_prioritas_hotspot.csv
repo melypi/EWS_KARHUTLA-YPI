@@ -1,0 +1,13 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Pemahan,Muara Semayok,"Jumat, 13 November 2026 15:34:00",NASA-MODIS,Medium,110.53081,-1.71439,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Pemahan,Muara Semayok,"Jumat, 13 November 2026 15:34:00",NASA-MODIS,Medium,110.54035,-1.71298,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Marau,Karya Baru,"Jumat, 13 November 2026 15:34:00",NASA-MODIS,Medium,110.68913,-2.26396,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Air Upas,Harapan Baru,"Jumat, 13 November 2026 01:17:00",NASA-NOAA20,Medium,110.87673,-2.17634,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Nanga Tayap,Mensubang,"Jumat, 13 November 2026 13:56:00",NASA-NOAA20,Medium,110.41999,-1.30875,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Kendawangan,Selimantan Jaya,"Jumat, 13 November 2026 13:56:00",NASA-NOAA20,Medium,110.56456,-2.28916,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Nanga Tayap,Mensubang,"Jumat, 13 November 2026 13:56:00",NASA-NOAA20,Medium,110.42504,-1.30794,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Marau,Karya Baru,"Jumat, 13 November 2026 13:56:00",NASA-NOAA20,Medium,110.6908,-2.26799,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Nanga Tayap,Pangkalan Teluk,"Jumat, 13 November 2026 13:56:00",NASA-NOAA20,Medium,110.39306,-1.29392,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Marau,Bantan Sari,"Jumat, 13 November 2026 13:56:00",NASA-NOAA20,Medium,110.82892,-2.13814,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Nanga Tayap,Pangkalan Teluk,"Jumat, 13 November 2026 13:56:00",NASA-NOAA20,Medium,110.39785,-1.29314,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Manis Mata,Kelampai,"Jumat, 13 November 2026 13:56:00",NASA-NOAA20,Medium,110.98885,-2.1506,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
