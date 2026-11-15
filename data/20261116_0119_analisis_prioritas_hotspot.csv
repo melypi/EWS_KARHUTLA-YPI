@@ -1,0 +1,2 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Balai,Hilir,"Minggu, 15 November 2026 13:20:00",NASA-NOAA20,Medium,110.10104,0.14244,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
