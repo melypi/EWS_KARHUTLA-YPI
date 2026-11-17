@@ -1,0 +1,3 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Tumbang Titi,Mahawa,"Selasa, 17 November 2026 01:42:00",NASA-NOAA20,Medium,110.6665,-1.85833,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Marau,Suka Karya,"Selasa, 17 November 2026 01:42:00",NASA-NOAA20,Medium,110.75039,-2.17738,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
