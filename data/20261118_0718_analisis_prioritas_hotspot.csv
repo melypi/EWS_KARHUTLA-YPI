@@ -1,0 +1,4 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Manis Mata,Sengkuang Merabong,"Selasa, 17 November 2026 12:42:00",NASA-NOAA20,Medium,110.99828,-2.19319,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Manis Mata,Sengkuang Merabong,"Selasa, 17 November 2026 12:42:00",NASA-NOAA20,Medium,111.0032,-2.19246,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Air Upas,Harapan Baru,"Selasa, 17 November 2026 12:42:00",NASA-NOAA20,Medium,110.88478,-2.21008,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
