@@ -1,0 +1,7 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Air Upas,Harapan Baru,"Sabtu, 21 November 2026 15:43:00",NASA-MODIS,Medium,110.86662,-2.18218,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Nanga Tayap,Kayong Utara,"Sabtu, 21 November 2026 13:05:00",NASA-NOAA20,Medium,110.6901,-1.50236,False,False,True,False,False,True,Di Luar Area Pantauan (>1000m dari Desa)
+Muara Pawan,Suka Maju,"Sabtu, 21 November 2026 13:05:00",NASA-NOAA20,Medium,110.01177,-1.75874,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Tayan Hilir,Lalang,"Sabtu, 21 November 2026 13:07:00",NASA-NOAA20,Medium,109.9681,-0.0404,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Toba,Balai Belungai,"Sabtu, 21 November 2026 13:07:00",NASA-NOAA20,Medium,110.1991,-0.14855,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Air Upas,Harapan Baru,"Sabtu, 21 November 2026 15:43:00",NASA-MODIS,Medium,110.87936,-2.18026,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
