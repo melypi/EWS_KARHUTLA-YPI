@@ -1,0 +1,2 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Air Upas,Harapan Baru,"Senin, 23 November 2026 15:22:00",NASA-MODIS,Medium,110.87432,-2.19591,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
