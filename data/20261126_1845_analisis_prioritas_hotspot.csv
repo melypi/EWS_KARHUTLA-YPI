@@ -1,0 +1,6 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Matan Hilir Utara,Lamon Satong,"Kamis, 26 November 2026 15:37:00",NASA-MODIS,Medium,110.27612,-1.40459,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Marau,Suka Karya,"Kamis, 26 November 2026 00:34:00",NASA-NOAA20,Medium,110.67002,-2.23633,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Manis Mata,Suak Burung,"Kamis, 26 November 2026 00:34:00",NASA-NOAA20,Medium,111.0681,-2.30821,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Manis Mata,Suak Burung,"Kamis, 26 November 2026 00:34:00",NASA-NOAA20,Medium,111.06519,-2.3104,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Manis Mata,Ratu Elok,"Kamis, 26 November 2026 15:37:00",NASA-MODIS,Medium,111.0089,-2.54326,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
