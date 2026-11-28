@@ -1,0 +1,4 @@
+Kecamatan,Desa,Waktu,Satelit,Confidence,Longitude,Latitude,in_desa,in_buffer,is_hutan,is_gambut,is_kk,in_kawasan,Prioritas_Satgas
+Tayan Hilir,Sungai Jaman,"Jumat, 27 November 2026 12:54:00",NASA-NOAA20,Medium,110.31118,0.06279,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Sekayam,Melenggang,"Jumat, 27 November 2026 12:54:00",NASA-NOAA20,Medium,110.74924,0.76536,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
+Noyan,Sungai Dangin,"Jumat, 27 November 2026 12:54:00",NASA-NOAA20,Medium,110.61441,0.733,False,False,False,False,False,False,Di Luar Area Pantauan (>1000m dari Desa)
